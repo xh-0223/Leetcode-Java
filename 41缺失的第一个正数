@@ -1,0 +1,21 @@
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+        int len =nums.length;
+        Arrays.sort(nums);
+        int n=nums[0];
+        int target=1;
+        for(int i=0;i<len;i++){
+            if(nums[i]<=0||(i>0&&nums[i]==nums[i-1])){
+                continue;
+            }//关键是排除负数和重复的数从1开始比较
+
+            if(target==nums[i]){
+                target++;
+            }else{
+                    return target;
+            }
+              
+        }
+        return target;
+    }
+}
