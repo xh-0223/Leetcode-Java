@@ -1,0 +1,58 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        /*int len =intervals.length;
+        if(len<=1){
+                return intervals;
+        }
+        Arrays.sort(intervals,(a,b)->a[0]-b[0]);//(参数1, 参数2) -> { 方法体 }     Arrays.sort( 数组, 比较规则 )
+        int idx=0;
+        int [][] ans=new int [len][2];
+        int start=intervals[0][0];
+        int end =intervals[0][1];
+        
+        for(int i=0;i<len;i++){
+            if(intervals[i][0]>end){
+                ans[idx++]=new int []{start,end};
+                start=intervals[i][0];
+                end=intervals[i][1];
+            }else{
+                end=Math.max(end,intervals[i][1]);
+            }
+        }
+        ans[idx++]=new int []{start,end};
+        int [][] temp =new int [idx][2];
+        System.arraycopy(ans,0,temp,0,idx);
+        return temp;
+*/
+        if(intervals==null||intervals.length==0){
+            return new int[0][0];
+        }
+
+        //排序,重写方法比较两个左端点
+        Arrays.sort(intervals,new Comparator<int[]>(){
+            @Override
+            public int compare(int a[],int b[]){
+                return a[0]-b[0];
+            }
+        });
+        List<int[]> res=new ArrayList<>();//用列表
+        int start=intervals[0][0];
+        int end=intervals[0][1];
+            for(int interval[]:intervals){
+                int s=interval[0];
+                int e=interval[1];
+                if(s>end){
+                    res.add(new int[]{start,end});
+                    start=s;
+                    end=e;
+
+                }else{
+                    end=Math.max(end,e);
+                    
+                }
+            }
+            res.add(new int[]{start,end});
+
+            return res.toArray(new int[res.size()][]);
+    }
+}
