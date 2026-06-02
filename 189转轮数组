@@ -1,0 +1,17 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        
+        int n=nums.length;
+        int []temp=new int[n];
+        for(int i=0;i<n;i++){
+            temp[(i+k)%n]=nums[i];
+        }
+        System.arraycopy(temp,0,nums,0,n);      /*System.arraycopy(
+                                                    源数组,      src
+                                                    源数组起始位置, srcPos
+                                                    目标数组,     dest
+                                                    目标数组起始位置, destPos
+                                                    要拷贝的长度    length
+                                                              );*/
+    }
+}
